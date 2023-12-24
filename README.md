@@ -4,15 +4,15 @@
 
 
 to start with the project, you'll need to run 
-'''
+```
 docker build
 docker-compose build
 
-'''
+```
 
 Then after that you'll run the 
-'''
+```
 docker-compose run --rm sh -c "python manage.py makemigrations"
 
 docker-compose run --rm sh -c "python manage.py migrate"
-'''
+```
