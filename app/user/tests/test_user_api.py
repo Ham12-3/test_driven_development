@@ -23,3 +23,29 @@ class PublicUserApiTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
+
+    def test_create_user_success(self):
+        """Test creating a user is successfull"""
+        payload = {
+            'email': 'test@example.com',
+            'password': 'testpass123',
+            'name': 'Test name'
+        }
+
+        res = self.client.post(CREATE_USER_URL, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        user = get_user_model().objects.get(email=payload['email'])
+        self.assertTrue(user.check_password(payload['password']))
+        self.assertNotIn('paswword', res.data)
+
+    def test_user_with_email_exists_error(self):
+        """Test error returned if user with email exists"""
+        payload = {
+            'email': 'test@example.com',
+            'password': 'testpass123',
+            'name': 'test Name',
+
+        }
+
+        create_user(**payload)
