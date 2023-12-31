@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken'
     'drf_spectacular',
     'user',
+    'allauth',
+    'allauth.account'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,5 @@ AUTH_USER_MODEL = 'core.User'
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+SITE_ID = 1
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

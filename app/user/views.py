@@ -28,7 +28,7 @@ class EmailValidationView(generics.CreateAPIView):
             # Your email validation logic here
             # You can check if the email already exists in your database, etc.
             return Response({'detail': 'Email is valid'}, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer_class.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CreateTokenView(ObtainAuthToken):
